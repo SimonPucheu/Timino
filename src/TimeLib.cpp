@@ -46,6 +46,7 @@ void Time::setTimestamp(long timestamp)
   time[1] = time[2] / 60;
   time[2] %= 60;
   time[0] = time[1] / 60;
+  time[0] %= 24;
   time[1] %= 60;
 }
 
