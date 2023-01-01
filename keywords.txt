@@ -6,25 +6,18 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-Led   KEYWORD1
+Date            KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
-on      KEYWORD2
-off     KEYWORD2
-toggle  KEYWORD2
-blink   KEYWORD2
-
-#######################################
-# Variables (KEYWORD3)
-#######################################
-
-state       KEYWORD3
-pin         KEYWORD3
-reversed    KEYWORD3
-
-######################################
-# Constants (LITERAL1)
-#######################################
+Date            KEYWORD2
+getTimestamp    KEYWORD2
+setTimestamp    KEYWORD2
+getYears        KEYWORD2
+getDays         KEYWORD2
+getHours        KEYWORD2
+getMinutes      KEYWORD2
+getSeconds      KEYWORD2
+getMilliseconds KEYWORD2

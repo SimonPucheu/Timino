@@ -1,15 +1,15 @@
 #include <Arduino.h>
 
-#include "TimeLib.h"
+#include "VirtualDate.h"
 
-Time::Time(long timestamp, long time)
+Date::Date(long timestamp, long time)
 {
   start.timestamp = timestamp;
   start.time = time;
   difference = start.time - start.timestamp;
 }
 
-Time::Time(long timestamp, String time)
+Date::Date(long timestamp, String time)
 {
   start.timestamp = timestamp;
   long hours = splitString(time, ':', 0).toInt();
@@ -23,7 +23,7 @@ Time::Time(long timestamp, String time)
   difference = start.time - start.timestamp;
 }
 
-Time::Time(long timestamp, long hours, long minutes = 0, long seconds = 0, long milliseconds = 0)
+Date::Date(long timestamp, long hours, long minutes = 0, long seconds = 0, long milliseconds = 0)
 {
   start.timestamp = timestamp;
   minutes += hours * 60;
@@ -33,41 +33,54 @@ Time::Time(long timestamp, long hours, long minutes = 0, long seconds = 0, long 
   difference = start.time - start.timestamp;
 }
 
-long Time::getTimestamp(long timestamp)
+long Date::getTimestamp(long timestamp)
 {
   return timestamp + difference;
 }
 
-void Time::setTimestamp(long timestamp)
+void Date::setTimestamp(long timestamp)
 {
-  time[3] = getTimestamp(timestamp);
-  time[2] = time[3] / 1000;
-  time[3] %= 1000;
-  time[1] = time[2] / 60;
-  time[2] %= 60;
-  time[0] = time[1] / 60;
-  time[0] %= 24;
-  time[1] %= 60;
+  date.milliseconds = getTimestamp(timestamp);
+  date.seconds = date.milliseconds / 1000;
+  date.milliseconds %= 1000;
+  date.minutes = date.seconds / 60;
+  date.seconds %= 60;
+  date.hours = date.minutes / 60;
+  date.minutes %= 60;
+  date.days = date.hours / 24;
+  date.hours %= 24;
+  date.years = date.days / 365;
+  date.days %= 365;
 }
 
-int Time::getHours()
+int Date::getYears()
 {
-  return time[0];
+  return date.years;
 }
 
-int Time::getMinutes()
+int Date::getDays()
 {
-  return time[1];
+  return date.days;
 }
 
-int Time::getSeconds()
+int Date::getHours()
 {
-  return time[2];
+  return date.hours;
 }
 
-int Time::getMilliseconds()
+int Date::getMinutes()
 {
-  return time[3];
+  return date.minutes;
+}
+
+int Date::getSeconds()
+{
+  return date.seconds;
+}
+
+int Date::getMilliseconds()
+{
+  return date.milliseconds;
 }
 
 /**
