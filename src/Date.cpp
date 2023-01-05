@@ -82,22 +82,3 @@ int Date::getMilliseconds()
 {
   return date.milliseconds;
 }
-
-/**
- * @return The string between the separator specified by the index and the next separator
- * */
-String splitString(String data, char separator, int index)
-{
-  int lastSep = 0;
-  int currIndex = 0;
-  for (int i = 0; i <= data.length(); i++)
-  {
-    if (data[i] == separator || i == data.length())
-    {
-      if (currIndex == index)
-        return data.substring(lastSep, i);
-      lastSep = i + 1;
-      currIndex++;
-    }
-  }
-}
