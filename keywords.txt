@@ -7,6 +7,7 @@
 #######################################
 
 Date            KEYWORD1
+Timeout         KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -21,3 +22,7 @@ getHours        KEYWORD2
 getMinutes      KEYWORD2
 getSeconds      KEYWORD2
 getMilliseconds KEYWORD2
+
+Timeout         KEYWORD2
+loop            KEYWORD2
+cancel          KEYWORD2

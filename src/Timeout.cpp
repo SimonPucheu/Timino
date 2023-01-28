@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#include "VirtualDate.h"
+#include "Timeout.h"
 
 Timeout::Timeout(void (*iCallback)(), unsigned long delay)
 {
@@ -10,6 +10,7 @@ Timeout::Timeout(void (*iCallback)(), unsigned long delay)
 
 void Timeout::loop()
 {
+    // running = timeoutRunning;
     if (millis() >= targetTime && running)
     {
         callback();

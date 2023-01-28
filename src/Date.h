@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 class Date
 {
     public:
@@ -30,18 +28,6 @@ class Date
             long timestamp;
             long time;
         } start;
-};
-
-class Timeout
-{
-    public:
-        Timeout(void (*iCallback)(), unsigned long iTargetTime);
-        void loop();
-        void cancel();
-    private:
-        int running = true;
-        void (*callback)();
-        unsigned long targetTime;
 };
 
 /**
