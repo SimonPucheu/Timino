@@ -2,24 +2,31 @@
 
 #include "Interval.h"
 
-Interval::Interval(void (*iCallback)(), unsigned long iInterval)
+Interval::Interval(void (*iCallback)(), unsigned long iInterval, bool start = true)
 {
     startTime = millis();
     callback = iCallback;
     interval = iInterval;
+    running = start;
 }
 
 void Interval::loop()
 {
     unsigned long time = millis();
-    if (previous != time && (time - startTime) % interval == 0 && running)
+    if ((time - startTime) >= counter * interval && running)
     {
         callback();
-        previous = time;
+        counter++;
     }
 }
 
 void Interval::cancel()
 {
     running = false;
+}
+
+void Interval::start()
+{
+    running = true;
+    startTime = millis();
 }

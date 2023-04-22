@@ -3,13 +3,14 @@
 class Interval
 {
     public:
-        Interval(void (*iCallback)(), unsigned long iInterval);
+        Interval(void (*iCallback)(), unsigned long iInterval, bool start = true);
         void loop();
         void cancel();
+        void start();
     private:
         int running = true;
         void (*callback)();
         unsigned long startTime;
         unsigned long interval;
-        unsigned long previous = 0;
+        int counter = 0;
 };

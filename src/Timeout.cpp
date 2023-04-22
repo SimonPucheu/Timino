@@ -2,15 +2,16 @@
 
 #include "Timeout.h"
 
-Timeout::Timeout(void (*iCallback)(), unsigned long delay)
+Timeout::Timeout(void (*iCallback)(), unsigned long iTimeout, bool start = true)
 {
-    targetTime = millis() + delay;
+    timeout = iTimeout;
+    targetTime = millis() + timeout;
     callback = iCallback;
+    running = start;
 }
 
 void Timeout::loop()
 {
-    // running = timeoutRunning;
     if (millis() >= targetTime && running)
     {
         callback();
@@ -21,4 +22,10 @@ void Timeout::loop()
 void Timeout::cancel()
 {
     running = false;
+}
+
+void Timeout::start()
+{
+    running = true;
+    targetTime = millis() + timeout;
 }
