@@ -13,7 +13,7 @@ Interval::Interval(void (*iCallback)(), unsigned long iInterval, bool start = tr
 void Interval::loop()
 {
     unsigned long time = millis();
-    if ((time - startTime) >= counter * interval && running)
+    if ((time - startTime) >= (counter * interval) && running)
     {
         callback();
         counter++;
@@ -29,4 +29,5 @@ void Interval::start()
 {
     running = true;
     startTime = millis();
+    counter = 0;
 }
