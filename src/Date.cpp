@@ -23,7 +23,7 @@ Date::Date(long timestamp, String time)
 	difference = start.time - start.timestamp;
 }
 
-Date::Date(long timestamp, long hours, long minutes = 0, long seconds = 0, long milliseconds = 0)
+Date::Date(long timestamp, long hours, long minutes = 0, long seconds = 0, long milliseconds = 0, float iCoeff = 1.0)
 {
 	start.timestamp = timestamp;
 	minutes += hours * 60;
@@ -31,6 +31,7 @@ Date::Date(long timestamp, long hours, long minutes = 0, long seconds = 0, long 
 	milliseconds += seconds * 1000;
 	start.time = milliseconds;
 	difference = start.time - start.timestamp;
+	coeff = iCoeff;
 }
 
 long Date::getTimestamp(long timestamp)
@@ -40,7 +41,7 @@ long Date::getTimestamp(long timestamp)
 
 void Date::setTimestamp(long timestamp)
 {
-	date.milliseconds = getTimestamp(timestamp);
+	date.milliseconds = getTimestamp(timestamp * coeff);
 	date.seconds = date.milliseconds / 1000;
 	date.milliseconds %= 1000;
 	date.minutes = date.seconds / 60;
