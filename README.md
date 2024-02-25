@@ -1,2 +1,2 @@
 # Timino
-This is an Arduino library for working with time without any hardware components
+It's an Arduino library that lets you work with time without any hardware components.
